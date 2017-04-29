@@ -29,6 +29,5 @@ for (x, y, w, h) in faces:
     cv2.circle(image, ((x + x + w) / 2, (y + y + h) / 2), w / 2, (0, 255, 0), 2)
     # cv2.rectangle(image, (x, y), (x + w, y + w), (0, 255, 0), 2)
 
-# 以弹出框的方式显示图片
-cv2.imshow("Find Faces!", image)
-cv2.waitKey(0)
+# 将结果写到本地文件：res.jpg
+cv2.imwrite("res.jpg", image)
