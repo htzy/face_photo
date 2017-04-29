@@ -4,6 +4,7 @@ from __future__ import print_function
 import cv2
 
 # 待检测的图片路径
+# imagepath = 'images/download.jpg'
 imagepath = 'images/basketball.jpg'
 
 # 获取训练好的人脸的参数数据，这里直接从GitHub上使用默认值
@@ -25,9 +26,8 @@ faces = face_cascade.detectMultiScale(
 
 print("发现{0}个人脸!".format(len(faces)))
 
-for (x, y, w, h) in faces:
-    cv2.circle(image, ((x + x + w) / 2, (y + y + h) / 2), w / 2, (0, 255, 0), 2)
-    # cv2.rectangle(image, (x, y), (x + w, y + w), (0, 255, 0), 2)
-
-# 将结果写到本地文件：res.jpg
-cv2.imwrite("res.jpg", image)
+for i, (x, y, w, h) in enumerate(faces):
+    face = image[y: y + h, x: x + w, :]
+    face = cv2.resize(face, (96, 96))
+    cv2.imwrite("tem_" + str(i) + ".jpg", face)
+    i += 1
