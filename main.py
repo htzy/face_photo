@@ -7,12 +7,12 @@ from glob import glob
 import cv2
 
 
-def detect(filename):
+def detect(file_name):
     # 获取训练好的人脸的参数数据，这里直接从GitHub上使用默认值
     face_cascade = cv2.CascadeClassifier(r'./haarcascade_frontalface_default.xml')
 
     # 读取图片
-    image = cv2.imread(filename)
+    image = cv2.imread(file_name)
 
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
@@ -31,8 +31,8 @@ def detect(filename):
         face = image[y: y + h, x: x + w, :]
         face_big = cv2.resize(face, (224, 224))
         face_small = cv2.resize(face, (32, 32))
-        cv2.imwrite("results/224/" + os.path.basename(filename).split('.')[0] + "_" + str(i) + ".jpg", face_big)
-        cv2.imwrite("results/32/" + os.path.basename(filename).split('.')[0] + "_" + str(i) + ".jpg", face_small)
+        cv2.imwrite("results/224/" + os.path.basename(file_name).split('.')[0] + "_" + str(i) + ".jpg", face_big)
+        cv2.imwrite("results/32/" + os.path.basename(file_name).split('.')[0] + "_" + str(i) + ".jpg", face_small)
         i += 1
 
 
