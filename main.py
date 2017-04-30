@@ -6,6 +6,7 @@ import cv2
 # 待检测的图片路径
 # imagepath = 'images/download.jpg'
 imagepath = 'images/basketball.jpg'
+# TODO 加入爬虫，自动爬取图片
 
 # 获取训练好的人脸的参数数据，这里直接从GitHub上使用默认值
 face_cascade = cv2.CascadeClassifier(r'./haarcascade_frontalface_default.xml')
