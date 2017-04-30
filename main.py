@@ -29,14 +29,19 @@ def detect(filename):
 
     for i, (x, y, w, h) in enumerate(faces):
         face = image[y: y + h, x: x + w, :]
-        face = cv2.resize(face, (96, 96))
-        cv2.imwrite("results/" + os.path.basename(filename).split('.')[0] + "_" + str(i) + ".jpg", face)
+        face_big = cv2.resize(face, (224, 224))
+        face_small = cv2.resize(face, (32, 32))
+        cv2.imwrite("results/224/" + os.path.basename(filename).split('.')[0] + "_" + str(i) + ".jpg", face_big)
+        cv2.imwrite("results/32/" + os.path.basename(filename).split('.')[0] + "_" + str(i) + ".jpg", face_small)
         i += 1
 
 
 if __name__ == '__main__':
-    if os.path.exists('results') is False:
-        os.mkdir('results')
+    # if os.path.exists('results') is False:
+    if not os.path.exists('results/224'):
+        os.makedirs(r'results/224')
+    if not os.path.exists('results/32'):
+        os.makedirs(r'results/32')
 
     file_list = glob('images/liguangfu/*.jpg')
     for filename in file_list:
